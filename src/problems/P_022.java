@@ -7,7 +7,7 @@ public class P_022 extends P_0
 {
   public long run()
   {
-    List<String> lines = (new FileLoader()).loadTextFile("/files/P_22.txt");
+    List<String> lines = (new FileLoader()).loadTextFile("/files/P_022.txt");
     LinkedList<String> names = new LinkedList<String>();
     LinkedList<String> unsortedNames = new LinkedList<String>();
     long answer = 0;

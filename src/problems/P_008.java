@@ -9,7 +9,7 @@ public class P_008 extends P_0
   public long run()
   {
     FileLoader fl = new FileLoader();
-    LinkedList<LinkedList<Integer>> n = fl.loadIntArray("/files/P_8.txt");
+    LinkedList<LinkedList<Integer>> n = fl.loadIntArray("/files/P_008.txt");
     LinkedList<Integer> nList = new LinkedList<Integer>();
     long answer = 0;
     

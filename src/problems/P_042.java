@@ -12,7 +12,7 @@ public class P_042 extends P_0
   {
     long answer = 0;
     FileLoader fl = new FileLoader();
-    List<String> part1 = fl.loadTextFile("/files/P_42.txt");  //separated by lines (text file is a single line)
+    List<String> part1 = fl.loadTextFile("/files/P_042.txt"); //separated by lines (text file is a single line)
     List<String> part2 = new LinkedList<String>();            //separated by commas (text still surrounded by qoutes
     
     //strip quotes
