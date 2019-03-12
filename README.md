@@ -1,5 +1,9 @@
 # EulerSolutions-Java
-This is a console-based program designed to run my solutions.
+This is a console-based program designed to contain and access my solutions to Project Euler problems.
+
+Spoilers!
+-
+Don't open the problem classes if you want to solve them. I'm only uploading this as an example of my own work.
 
 IDE
 -
