@@ -25,18 +25,7 @@ public class Interface
       System.out.print("Which problem would you like to solve? ");
       input = in.nextLine().toUpperCase();
       
-      if(input.contains("?")) //help files
-      {
-        List<String> file = null;
-        
-        try{file = fl.loadTextFile("/info/I_" + input.replace("?", "") + ".txt");}
-        catch(Exception e){System.out.println("Help file not found.");}
-        
-        if(file != null)
-          for(String l: file)
-            System.out.println(l);  
-      }
-      else if(input.equals("EXIT"))
+      if(input.equals("EXIT"))
       {
         System.out.println("Exiting.");
         in.close();
@@ -45,16 +34,13 @@ public class Interface
       else
       {
         P_0 problem = null;
-        
-        //open the problem's webpage
+        boolean openLinks = false;
+
         if(input.contains("LINK"))
         {
           input = input.replace("LINK",  "");
           input = input.replace(" ",  "");
-          
-          if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE))
-            try{Desktop.getDesktop().browse(new URI("https://projecteuler.net/problem=" + input));}
-            catch (Exception e){/*no need to do anything, just keep going*/}
+          openLinks = true;
         }
            
         // Add Trailing 0's
@@ -71,6 +57,15 @@ public class Interface
           long startTime = System.currentTimeMillis();
           long answer = problem.run();
           long newTime = System.currentTimeMillis() - startTime;
+          
+          //open links
+          if (openLinks && Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE))
+            try
+            {
+              Desktop.getDesktop().browse(new URI("https://projecteuler.net/problem=" + Integer.parseInt(input)));
+              Desktop.getDesktop().browse(new URI("https://github.com/64bleat/EulerSolutions-Java/blob/master/src/problems/P_" + input +".java"));
+            }
+            catch (Exception e){/*no need to do anything, just keep going*/}
           
           //add blank lines for unanswered questions.
           while(answers.size() <= i) answers.add("");
