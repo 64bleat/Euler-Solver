@@ -1,6 +1,8 @@
 package main;
 
 import java.util.*;
+import java.awt.Desktop;
+import java.net.URI;
 
 import problems.*;
 import supplemental.*;
@@ -13,12 +15,14 @@ public class Interface
     FileLoader fl = new FileLoader();
     List<String> answers = fl.loadTextFile("/files/Answers.txt");
     List<String> times= fl.loadTextFile("/files/Times.txt");
+    
+    System.out.println("===Project Euler Solver===\nInclude \"link\" to load the problem's webpage\nType \"exit\" to... exit.\n==========================");
 
     while(true)
     {
       String input;
       
-      System.out.print("Which experiment would you like to do? ");
+      System.out.print("Which problem would you like to solve? ");
       input = in.nextLine().toUpperCase();
       
       if(input.contains("?")) //help files
@@ -42,6 +46,17 @@ public class Interface
       {
         P_0 problem = null;
         
+        //open the problem's webpage
+        if(input.contains("LINK"))
+        {
+          input = input.replace("LINK",  "");
+          input = input.replace(" ",  "");
+          
+          if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE))
+            try{Desktop.getDesktop().browse(new URI("https://projecteuler.net/problem=" + input));}
+            catch (Exception e){/*no need to do anything, just keep going*/}
+        }
+           
         // Add Trailing 0's
         while(input.length() < 3)
           input = "0" + input;
@@ -96,7 +111,7 @@ public class Interface
             }
             else
               System.out.println(" Best time: " + times.get(i) + "ms");
-          }
+          }       
         }
       }    
     }
