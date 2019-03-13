@@ -1,12 +1,21 @@
 # EulerSolutions-Java
--Repository generated using Eclipse-
+This is a console-based program designed to contain and access my solutions to Project Euler problems.
 
-This code is intended to be run in Eclipse, but can be exported as an executable jar and ran in the command prompt, so long as files\answers.txt and files\times.txt are available to it.
+Spoilers!
+-
+Don't open the problem classes if you want to solve them. I'm only uploading this as an example of my own work.
 
-Important Folder Descriptions:
+IDE
+-
+Eclipse Version: 2019-03 RC1 (4.11 RC1)
 
-Main: A command prompt interface for accessing problems. Type the problem number in to get an answer.
+Setup
+- 
+* Create a project folder in your Eclipse workspace and place all files and folders into it.
 
-Problems: Each problem class contains a run method that outputs an answer.
-
-Supplemental: Classes that are useful in multiple problems.
+Use
+-
+* Enter the problem number you would like to see solved. If it has not been solved yet, input will be seen as invalid.
+* Including the word "link" with the number will open its Project Euler page and its GitHub source code page in your browser.
+* If the correct answer has not been stored yet, the program will ask if its output is correct.
+* If the correct answer is calculated, the run time will be saved to track efficiency.
