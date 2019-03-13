@@ -149,6 +149,17 @@ public class Prime
     return primes.get(index);
   }
   
+  public int indexAfter(long n)
+  {
+    int i = 0;
+    
+    while(get(i) <= n)
+      i++;
+    
+    return i;
+      
+  }
+  
   /*============================================================
    * IS PRIME
    * =========================================================*/
