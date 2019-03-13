@@ -3,7 +3,6 @@ package problems;
 import java.util.*;
 import supplemental.Prime;
 
-
 public class P_012 extends P_0
 {
   public long run()

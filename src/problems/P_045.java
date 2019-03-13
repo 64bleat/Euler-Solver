@@ -23,8 +23,6 @@ public class P_045 extends P_0
         vH = h(++nH);
     }
     
-    System.out.println(""+ t(nT) + " " + p(nP) + " " + h(nH));
-    
     return t(nT);
   }
   

@@ -8,9 +8,8 @@ public class P_015 extends P_0
   
   public long run()
   {
-    array = new LinkedList<LinkedList<Long>>();
-    
     //first row
+    array = new LinkedList<LinkedList<Long>>();
     array.add(new LinkedList<Long>());
     array.getLast().add(1L);
     
@@ -18,6 +17,7 @@ public class P_015 extends P_0
     for(int y = 1; y <= 20; y++)
     {
       array.add(new LinkedList<Long>());
+      
       for(int x = 0; x <= y; x++)
       {
         if(x != y)
@@ -33,7 +33,6 @@ public class P_015 extends P_0
   private static long get(int x, int y)
   {
     try{return array.get(y).get(x);}
-    catch(Exception e){
-      return 0L;}
+    catch(Exception e){return 0L;}
   }
 }
