@@ -7,19 +7,18 @@ public class P_037 extends P_0
   public long run()
   {
     long answer = 0;
-    Prime p = new Prime();
     byte count = 0;
     
     for(int i = 4; count < 11; i++) //first ten index at index 4
     {
-      long a = p.get(i);
+      long a = Prime.get(i);
       long b = a;
       
-      while((a /= 10) > 0 && p.isPrime(a));
+      while((a /= 10) > 0 && Prime.isPrime(a));
       
       if(a == 0)
       {
-        while(b > 0 && p.isPrime(b))
+        while(b > 0 && Prime.isPrime(b))
         {
           int digits = (int)Math.pow(10, (int)Math.floor(Math.log10(b)));
           digits *= b / digits;
@@ -30,8 +29,8 @@ public class P_037 extends P_0
       if(b == 0)
       {
         count++;
-        System.out.println(p.get(i));
-        answer += p.get(i);
+        System.out.println(Prime.get(i));
+        answer += Prime.get(i);
       }
     }
     

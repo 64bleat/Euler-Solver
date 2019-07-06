@@ -7,14 +7,12 @@ public class P_047 extends P_0
 {
   public long run()
   {
-    Prime p = new Prime();
-    
     long i = 644;
     int count = 0;
     
     while(true)
     {
-      List<Long> factors = p.primeFactor(i++);
+      List<Long> factors = Prime.primeFactor(i++);
       long lastFactor = -1;
       
       for(int j = 0; j < factors.size(); j++)

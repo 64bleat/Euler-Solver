@@ -6,7 +6,6 @@ public class P_027 extends P_0
 {
   public long run()
   {
-    Prime p = new Prime();
     long answer = 0;
     long maxPrimes = 0;
     
@@ -15,7 +14,7 @@ public class P_027 extends P_0
       {
         int n = 0;
         
-        while(p.isPrime(n*n + a*n + b))
+        while(Prime.isPrime(n*n + a*n + b))
           n++;
         
         if(n > maxPrimes)

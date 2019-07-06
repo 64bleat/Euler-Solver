@@ -6,11 +6,12 @@ public class P_010 extends P_0
 {
   public long run()
   {
-    Prime prime = new Prime();
     long answer = 0;
     long primeIndex;
+    
+    Prime.reset();
 
-    while((primeIndex = prime.next()) < 2000000L)
+    while((primeIndex = Prime.next()) < 2000000L)
       answer += primeIndex;
     
     return answer;

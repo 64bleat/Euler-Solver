@@ -2,24 +2,23 @@ package supplemental;
 
 import java.util.*;
 
-/**
- *  An object designed to make finding fibonacci numbers faster.
- */
+/** An object designed to make finding fibonacci numbers faster. */
 public class Fibonacci
 {
-  private Map<Integer, Long> values;
-  private int cursor;
+  private static int cursor = 0;
+  private static Map<Integer, Long> values = new HashMap<Integer, Long>()
+  {
+    {
+      put(0, 1L);
+      put(1, 2L);
+    }
+  };
   
-  /**
-   *  Returns the Fibonacci number at the given index. When the object is created,
+  /** Returns the Fibonacci number at the given index. When the object is created,
    *  it maps all found numbers to an index for faster returns. <p>
    *  
-   *  The object's cursor is set to i + 1.
-   *  
-   *  @param i  The index of the requested nubmer.
-   *  @return   The Fibonacci number at the given index.
-   */
-  public long valueAt(int i)
+   *  The cursor is set to i + 1.*/
+  public static long valueAt(int i)
   {    
     while(values.size() <= i)
       values.put(values.size(), values.get(values.size() - 1) + values.get(values.size() - 2));
@@ -27,22 +26,16 @@ public class Fibonacci
     return values.get(i);
   }
   
-  /**
-   * Returns the next fibonacci number and increments the cursor.
-   * 
-   * @return    The next fibonacci number after cursor.
-   */
-  public long next()
+  /** Returns the fibonacci number and increments the cursor.
+   * @return    The fibonacci number at cursor.. */
+  public static long next()
   {
     return valueAt(cursor++); 
   }
   
-  public Fibonacci()
+  /** sets the cursor to a specific index. */
+  public static void setCursor(int c)
   {
-    values = new HashMap<Integer, Long>();
-    values.put(0, 1L);
-    values.put(1, 2L);
-    
-    cursor = 0;
+    cursor = c;
   }
 }

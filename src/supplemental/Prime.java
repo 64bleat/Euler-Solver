@@ -4,14 +4,24 @@ import java.util.*;
 
 public class Prime
 {
-  private Map<Long, List<Long>> factors;
-  private Map<Integer, Long> perfects, primes;
-  private int cursor;
+  private static int cursor = 0;
+  private static Map<Long, List<Long>> factors = new HashMap<Long, List<Long>>();
+  private static Map<Integer, Long> perfects = new HashMap<Integer, Long>()
+      {{
+          put(0, 0L);
+          put(1, 1L);
+      }};
+      
+  private static Map<Integer, Long> primes = new HashMap<Integer, Long>()
+      {{
+          put(0, 2L);
+          put(1, 3L);
+      }};
   
   /*============================================================
    * ABUNDANCE
    * =========================================================*/
-  public long abundanceOf(long number)
+  public static long abundanceOf(long number)
   {
     long abundance = 0;
    
@@ -24,7 +34,7 @@ public class Prime
   /*============================================================
    * AMICABILITY
    * =========================================================*/
-  public boolean areAmicable(long a, long b)
+  public static boolean areAmicable(long a, long b)
   {
     long dA = 0;
     long dB = 0;
@@ -38,7 +48,7 @@ public class Prime
   /*============================================================
    * FULL FACTORING
    * =========================================================*/ 
-  public List<Long> factor(long number)
+  public static List<Long> factor(long number)
   {
     List<Long> fGet = factors.get(number);
     double numberSqrt = Math.sqrt(number);
@@ -103,7 +113,7 @@ public class Prime
   /*============================================================
    * GREATEST COMMON FACTOR
    * =========================================================*/
-  public long gcf(long a, long b)
+  public static long gcf(long a, long b)
   {
     List<Long> fA, fB;
     long gcf = 0;
@@ -122,7 +132,7 @@ public class Prime
   /*============================================================
    * GETTING PRIMES
    * =========================================================*/
-  public long get(int index)
+  public static long get(int index)
   {
     while(primes.size() <= index)
     {
@@ -149,7 +159,7 @@ public class Prime
     return primes.get(index);
   }
   
-  public int indexAfter(long n)
+  public static int indexAfter(long n)
   {
     int i = 0;
     
@@ -163,7 +173,7 @@ public class Prime
   /*============================================================
    * IS PRIME
    * =========================================================*/
-  public boolean isPrime(long n)
+  public static boolean isPrime(long n)
   {
     long check = 0;
     
@@ -177,7 +187,7 @@ public class Prime
   /*============================================================
    * NEXT
    * =========================================================*/
-  public long next()
+  public static long next()
   {
     return get(cursor++);
   }
@@ -185,7 +195,7 @@ public class Prime
   /*============================================================
    * SMALLEST PERFECTLY DIVISIBLE NUMBER
    * =========================================================*/
-  public long perfectTo(int num)
+  public static long perfectTo(int num)
   {
     while(perfects.size() <= num)
       perfects.put(perfects.size(), perfects.get(perfects.size() - 1) * perfects.size() / gcf(perfects.get(perfects.size() - 1), perfects.size()));
@@ -196,7 +206,7 @@ public class Prime
   /*============================================================
    * PRIME FACTORING BREAKDOWN
    * =========================================================*/ 
-  public LinkedList<Long> primeFactor(long number)
+  public static LinkedList<Long> primeFactor(long number)
   {
     LinkedList<Long> factors = new LinkedList<Long>();
     long remainder = number;
@@ -225,7 +235,7 @@ public class Prime
   /*============================================================
    * PROPER DIVISORS
    * =========================================================*/
-  public LinkedList<Long> properDivisorsOf(long n)
+  public static LinkedList<Long> properDivisorsOf(long n)
   {
     LinkedList<Long> pFactors = new LinkedList<Long>();
     
@@ -239,7 +249,7 @@ public class Prime
   /*============================================================
    * RESET
    * =========================================================*/
-  public void reset()
+  public static void reset()
   {
     cursor = 0;
   }
@@ -247,11 +257,8 @@ public class Prime
   /*============================================================
    * Constructor
    * =========================================================*/
-  public Prime()
+  /*public Prime()
   {
-    primes = new HashMap<Integer, Long>();
-    primes.put(0, 2L);
-    primes.put(1, 3L);
     cursor = 0;
     
     perfects = new HashMap<Integer, Long>();
@@ -259,5 +266,5 @@ public class Prime
     perfects.put(1, 1L);
     
     factors = new HashMap<Long, List<Long>>();
-  }
+  }*/
 }

@@ -17,7 +17,7 @@ public class FileLoader
    * @param path  text file to be used. DIGITS ONLY
    * @return      2D single-digit Int array
    */
-  public LinkedList<LinkedList<Integer>> loadIntArray(String path)
+  public static List<LinkedList<Integer>> loadIntArray(String path)
   {
     LinkedList<LinkedList<Integer>> array = new LinkedList<LinkedList<Integer>>();
     List<String> file = loadTextFile(path);
@@ -39,9 +39,9 @@ public class FileLoader
    * @param path  text file to be used
    * @return      a plain ol' File
    */
-  public File loadFile(String path)
+  public static File loadFile(String path)
   {
-    URL url = getClass().getResource(path);
+    URL url = new FileLoader().getClass().getResource(path);
     
     if(url == null)
       return null;
@@ -49,7 +49,7 @@ public class FileLoader
       return new File(url.getPath());
   }
   
-  public void saveTextFile(String path, List<String> text)
+  public static void saveTextFile(String path, List<String> text)
   {
     PrintWriter pw = null;
     
@@ -71,11 +71,49 @@ public class FileLoader
    * @param path  text file to be used
    * @return      a String List where each index is a new line.
    */
-  public List<String> loadTextFile(String path)
+  public static List<String> loadTextFile(String path)
   {
     try{return Files.readAllLines(loadFile(path).toPath(), StandardCharsets.UTF_8);}
     catch (IOException e){e.printStackTrace();}
 
     return null;
+  }
+  
+  public static void saveMapFile(String path, Map<String, String> map)
+  {
+    PrintWriter pw = null;
+    
+    try {pw = new PrintWriter(loadFile(path));}
+    catch (FileNotFoundException e) {}
+    
+    if(pw == null)
+      return;
+    
+    for(Map.Entry<String, String> entry : map.entrySet())
+      pw.write(entry.getKey() + ":" + entry.getValue() + "\n");
+    
+    pw.close();
+  }
+  
+  public static Map<String, String> loadMapFile(String path)
+  {
+    try
+    {
+      Map<String, String> dic = new HashMap<String, String>();
+      
+      for(String line : Files.readAllLines(loadFile(path).toPath(), StandardCharsets.UTF_8))
+      {
+        String[] pair = line.split(":");
+        
+        if(pair.length == 2)
+          dic.put(pair[0], pair[1]);
+      }
+      
+      return dic;
+    }
+    catch (Exception e)
+    {
+      return null;
+    }
   }
 }

@@ -6,14 +6,12 @@ public class P_043 extends P_0
 {  
   final static  int NUM_DIGITS = 10;
   private static long answer;
-  private static Prime p;
   
   public long run()
   {
     int[] dig = new int[NUM_DIGITS];
     
     answer = 0;
-    p = new Prime();
     
     for(int i = 0; i < NUM_DIGITS; i++)
       dig[i] = i;
@@ -34,7 +32,7 @@ public class P_043 extends P_0
       {
         int temp = a[i] * 100 + a[i+1] * 10 + a[i+2];
         
-        if(temp % p.get(i-1) != 0)
+        if(temp % Prime.get(i-1) != 0)
           match = false;
       }
      

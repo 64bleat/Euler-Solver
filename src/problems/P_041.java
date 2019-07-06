@@ -9,10 +9,10 @@ public class P_041 extends P_0
   public long run()
   {
     long answer = 0;
-    long prime = 0;
-    Prime p = new Prime();
+
+    Prime.reset();
     
-    for(int i = 0; (prime = p.get(i)) <= 7654321; i++)
+    for(long prime = Prime.next(); prime <= 7654321; prime = Prime.next())
     {
       Map<Integer, Boolean> map = new HashMap<Integer, Boolean>();
       boolean pan = true;

@@ -6,11 +6,12 @@ public class P_026 extends P_0
 {
   public long run()
   {   
-    Prime p = new Prime();
-    long answer, maxLength;
-    answer = maxLength = 0;
+    long answer = 0; 
+    long maxLength = 0;
     
-    for(long n = p.next(); n < 1000; n = p.next())
+    Prime.reset();
+    
+    for(long n = Prime.next(); n < 1000; n = Prime.next())
     {
       if(n == 2 || n == 5)
         continue;

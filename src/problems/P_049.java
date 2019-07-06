@@ -7,8 +7,7 @@ public class P_049 extends P_0
   public long run()
   {
     int i = 1487;
-    Prime prime = new Prime();
-    
+
     while(++i < 10000)
     {
       int offset = 0;
@@ -20,7 +19,7 @@ public class P_049 extends P_0
         
         for(int k = 0; k < 3 && isPrime && isPermutable; k++)
           if(isPermutable = isPermutation(toChar(i), toChar(i+k*offset)))
-            isPrime = prime.isPrime(i+k*offset);
+            isPrime = Prime.isPrime(i+k*offset);
 
         if(isPrime && isPermutable)
           return Long.parseLong("" + i + (i+offset) + (i + 2 * offset));

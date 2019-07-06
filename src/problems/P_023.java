@@ -9,12 +9,11 @@ public class P_023 extends P_0
   
   public long run()
   {
-    Prime prime = new Prime();
     abundantNumbers = new TreeSet<Long>();
     long answer = 0;
     
     for(long i = 1; i < 28123; i++)
-      if(prime.abundanceOf(i) > 0)
+      if(Prime.abundanceOf(i) > 0)
         abundantNumbers.add(i);
     
     for(int n = 1; n < 28123; n++)     
