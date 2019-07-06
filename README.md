@@ -3,15 +3,11 @@ This is a console-based program designed to contain and access my solutions to P
 
 Spoilers!
 -
-Don't open the problem classes if you want to solve them. I'm only uploading this as an example of my own work.
+Don't open the problem classes if you want to solve them. That's no fun! Besides, there's probably better ways.
 
 IDE
 -
 Eclipse Version: 2019-03 RC1 (4.11 RC1)
-
-Setup
-- 
-* Create a project folder in your Eclipse workspace and place all files and folders into it.
 
 Use
 -
