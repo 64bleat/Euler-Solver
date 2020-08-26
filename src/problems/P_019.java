@@ -1,5 +1,9 @@
 package problems;
 
+/**
+ * <b>Counting Sundays</b><br>
+ * How many Sundays were on the first of the month from 1 Jan 1901 to 31 Dec 2000
+ */
 public class P_019 extends P_0
 {
   public long run()
@@ -29,8 +33,8 @@ public class P_019 extends P_0
 
     if((offsetDays += 0 ) % 7 == 0) ms++; //January
     if((offsetDays += 31) % 7 == 0) ms++; //February
-    if(isLeapYear(year)) offsetDays += 29;
-    else                 offsetDays += 28;
+    if(isLeapYear(year)) offsetDays += 29;  //LeapYear
+    else                 offsetDays += 28;	//RegularYear
     if((offsetDays += 0 ) % 7 == 0) ms++; //March
     if((offsetDays += 31) % 7 == 0) ms++; //April
     if((offsetDays += 30) % 7 == 0) ms++; //May

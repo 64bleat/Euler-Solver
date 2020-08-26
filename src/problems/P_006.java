@@ -1,8 +1,7 @@
 package problems;
 
 /**
- * Sum Square Difference.
- * 
+ * <b>Sum Square Difference</b><br>
  * Find the difference between the sum of the squares of the first 100 natural
  * numbers and square the sum. Confusing enough?
  */

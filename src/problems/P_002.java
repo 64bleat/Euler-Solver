@@ -3,9 +3,9 @@ package problems;
 import supplemental.Fibonacci;
 
 /**
- * Even Fibonacci Numbers
- * 
+ * <b>Even Fibonacci Numbers</b><br> 
  * Summate all even-valued Fibonacci numbers below 4 000 000.
+ * @see supplemental.Fibonacci
  */
 public class P_002 extends P_0
 {
