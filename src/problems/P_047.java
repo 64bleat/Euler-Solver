@@ -12,7 +12,7 @@ public class P_047 extends P_0
     
     while(true)
     {
-      List<Long> factors = Prime.primeFactor(i++);
+      List<Long> factors = Prime.primeFactorize(i++);
       long lastFactor = -1;
       
       for(int j = 0; j < factors.size(); j++)

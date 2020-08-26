@@ -11,7 +11,7 @@ public class P_012 extends P_0
     List<Long> divisors = new LinkedList<Long>();
     
     for(int i = 0; divisors.size() < 500;)
-      divisors = Prime.factor(triangle += i++);
+      divisors = Prime.factorize(triangle += i++);
 
     return triangle;
   }

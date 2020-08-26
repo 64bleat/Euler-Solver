@@ -28,8 +28,8 @@ public class Solver
 	 */
 	public static void main(String[] args)
 	{
-		newAnswers = FileLoader.loadMapFile("/files/Answers.txt");
-		newTimes = FileLoader.loadMapFile("/files/Times.txt");
+		newAnswers = FileLoader.loadMap("/files/Answers.txt");
+		newTimes = FileLoader.loadMap("/files/Times.txt");
 
 		commands.put("exit", Exit);
 		commands.put("solve", Solve);
@@ -116,7 +116,7 @@ public class Solver
 					if (in.nextLine().toUpperCase().equals("YES"))
 						newAnswers.put(args[p], answer);
 
-					FileLoader.saveMapFile("/files/Answers.txt", newAnswers);
+					FileLoader.saveMap("/files/Answers.txt", newAnswers);
 				}
 				else if (!newAnswers.get(args[p]).equals(answer))
 					System.out.println("WRONG!!! CORRECT ANSWER IS " + newAnswers.get(args[p]) + " !!!");
@@ -128,13 +128,13 @@ public class Solver
 					{
 						System.out.println(" NEW TIME!");
 						newTimes.put(args[p], newTime);
-						FileLoader.saveMapFile("/files/Times.txt", newTimes);
+						FileLoader.saveMap("/files/Times.txt", newTimes);
 					}
 					else if (Long.parseLong(newTime) < Long.parseLong(newTimes.get(args[p])))
 					{
 						System.out.println(" NEW BEST :D");
 						newTimes.put(args[p], newTime);
-						FileLoader.saveMapFile("/files/Times.txt", newTimes);
+						FileLoader.saveMap("/files/Times.txt", newTimes);
 					}
 					else
 						System.out.println(" Best time: " + newTimes.get(args[p]) + "ms");

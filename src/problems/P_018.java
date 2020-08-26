@@ -13,7 +13,7 @@ public class P_018 extends P_0
     long answer = 0;
     
     //LOAD
-    for(String s : FileLoader.loadTextFile("/files/P_018.txt"))
+    for(String s : FileLoader.loadLines("/files/P_018.txt"))
     {
       LinkedList<Long> newLine = new LinkedList<Long>();
       

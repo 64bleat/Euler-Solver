@@ -11,7 +11,7 @@ public class P_042 extends P_0
   public long run()
   {
     long answer = 0;
-    List<String> part1 = FileLoader.loadTextFile("/files/P_042.txt");   //separated by lines (text file is a single line)
+    List<String> part1 = FileLoader.loadLines("/files/P_042.txt");   //separated by lines (text file is a single line)
     List<String> part2 = new LinkedList<String>();                      //separated by commas (text still surrounded by qoutes
     
     //strip quotes

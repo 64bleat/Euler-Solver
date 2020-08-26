@@ -7,113 +7,141 @@ import java.nio.file.Files;
 import java.util.*;
 
 /**
- * An object to easily turn text files into data structures.
+ * A collection of file loading and saving helper methods.
  */
 public class FileLoader
 {
-  /**
-   * Converts a file into a 2D single-digit Int array using LinkedList.
-   * 
-   * @param path  text file to be used. DIGITS ONLY
-   * @return      2D single-digit Int array
-   */
-  public static List<LinkedList<Integer>> loadIntArray(String path)
-  {
-    LinkedList<LinkedList<Integer>> array = new LinkedList<LinkedList<Integer>>();
-    List<String> file = loadTextFile(path);
-    
-    for(int y = 0; y < file.size(); y++)
-    {
-      array.add(new LinkedList<Integer>());
-      
-      for(int x = 0; x < file.get(y).length(); x++)
-        array.get(y).add(Integer.parseInt(String.valueOf(file.get(y).charAt(x))));
-    }
-    
-    return array;
-  }
-  
-  /**
-   * Loads a file, doesn't process it in any way.
-   * 
-   * @param path  text file to be used
-   * @return      a plain ol' File
-   */
-  public static File loadFile(String path)
-  {
-    URL url = new FileLoader().getClass().getResource(path);
-    
-    if(url == null)
-      return null;
-    else
-      return new File(url.getPath());
-  }
-  
-  public static void saveTextFile(String path, List<String> text)
-  {
-    PrintWriter pw = null;
-    
-    try{pw = new PrintWriter(loadFile(path));}
-    catch (FileNotFoundException e){}
-    
-    if(pw == null)
-      return;
+	/**
+	 * Loads a file into a 2D single-digit Int array using LinkedList.
+	 * @param path text file to be used. DIGITS ONLY
+	 * @return 2D single-digit Int array
+	 */
+	public static List<LinkedList<Integer>> loadIntArray(String path)
+	{
+		LinkedList<LinkedList<Integer>> array = new LinkedList<LinkedList<Integer>>();
+		List<String> file = loadLines(path);
 
-    //w.flush();
-    for(String s: text)
-      pw.write(s + "\n");
-    pw.close();
-  }
-  
-  /**
-   * A quick way to turn a file into a string list.
-   * 
-   * @param path  text file to be used
-   * @return      a String List where each index is a new line.
-   */
-  public static List<String> loadTextFile(String path)
-  {
-    try{return Files.readAllLines(loadFile(path).toPath(), StandardCharsets.UTF_8);}
-    catch (IOException e){e.printStackTrace();}
+		for (int y = 0; y < file.size(); y++)
+		{
+			array.add(new LinkedList<Integer>());
 
-    return null;
-  }
-  
-  public static void saveMapFile(String path, Map<String, String> map)
-  {
-    PrintWriter pw = null;
-    
-    try {pw = new PrintWriter(loadFile(path));}
-    catch (FileNotFoundException e) {}
-    
-    if(pw == null)
-      return;
-    
-    for(Map.Entry<String, String> entry : map.entrySet())
-      pw.write(entry.getKey() + ":" + entry.getValue() + "\n");
-    
-    pw.close();
-  }
-  
-  public static Map<String, String> loadMapFile(String path)
-  {
-    try
-    {
-      Map<String, String> dic = new HashMap<String, String>();
-      
-      for(String line : Files.readAllLines(loadFile(path).toPath(), StandardCharsets.UTF_8))
-      {
-        String[] pair = line.split(":");
-        
-        if(pair.length == 2)
-          dic.put(pair[0], pair[1]);
-      }
-      
-      return dic;
-    }
-    catch (Exception e)
-    {
-      return null;
-    }
-  }
+			for (int x = 0; x < file.get(y).length(); x++)
+				array.get(y).add(Integer.parseInt(String.valueOf(file.get(y).charAt(x))));
+		}
+
+		return array;
+	}
+
+	/**
+	 * Loads a file as a File, nothing more.
+	 * @param path relative file path
+	 * @return a simple reference to the file.
+	 */
+	public static File loadFile(String path)
+	{
+		URL url = new FileLoader().getClass().getResource(path);
+
+		if (url == null)
+			return null;
+		else
+			return new File(url.getPath());
+	}
+
+	/**
+	 * Save a list of strings separated into a text document separated by line
+	 * breaks
+	 * @param path relative file path
+	 * @param lines list of strings to be saved
+	 */
+	public static void saveLines(String path, List<String> lines)
+	{
+		PrintWriter pw = null;
+
+		try
+		{
+			pw = new PrintWriter(loadFile(path));
+		}
+		catch (FileNotFoundException e)
+		{}
+
+		if (pw == null)
+			return;
+
+		// w.flush();
+		for (String s : lines)
+			pw.write(s + "\n");
+		pw.close();
+	}
+
+	/**
+	 * Load a list of strings separated by line breaks
+	 * 
+	 * @param path text file to be used
+	 * @return a List<String> separated by line breaks
+	 */
+	public static List<String> loadLines(String path)
+	{
+		try
+		{
+			return Files.readAllLines(loadFile(path).toPath(), StandardCharsets.UTF_8);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	/**
+	 * Save a HashMap<String, String> to a file.
+	 * @param path relative file path
+	 * @param map HashMap to be saved
+	 */
+	public static void saveMap(String path, Map<String, String> map)
+	{
+		PrintWriter pw = null;
+
+		try
+		{
+			pw = new PrintWriter(loadFile(path));
+		}
+		catch (FileNotFoundException e)
+		{}
+
+		if (pw == null)
+			return;
+
+		for (Map.Entry<String, String> entry : map.entrySet())
+			pw.write(entry.getKey() + ":" + entry.getValue() + "\n");
+
+		pw.close();
+	}
+
+	/**
+	 * Load a HashMap<String, String> from a file.
+	 * @param path relative file path
+	 * @return loaded HashMap<String, String>
+	 */
+	public static Map<String, String> loadMap(String path)
+	{
+		try
+		{
+			Map<String, String> dic = new HashMap<String, String>();
+
+			for (String line : Files.readAllLines(loadFile(path).toPath(), StandardCharsets.UTF_8))
+			{
+				String[] pair = line.split(":");
+
+				if (pair.length == 2)
+					dic.put(pair[0], pair[1]);
+			}
+
+			return dic;
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+	}
 }
