@@ -3,15 +3,32 @@ This is a console-based program designed to contain and access my solutions to P
 
 Spoilers!
 -
-Don't open the problem classes if you want to solve them. That's no fun! Besides, there's probably better ways.
+Don't view the problem classes if you want to solve them. That's no fun! Besides, I'm sure there are better ways to solve these.
 
 Use
 -
-* Enter the problem number you would like to see solved. If it has not been solved yet, input will be seen as invalid.
+* Add and build the project in Eclipse.
+* Run within Eclipse, or build and run 'Start.bat'
+* Enter the problem number you would like to see solved. If there is no class associated with the solution, the input number is considered invalid.
+
+```
+Which problem would you like to solve? 1
+```
+
 * Including the word "link" with the number will open its Project Euler page and its GitHub source code page in your browser.
-* If the correct answer has not been stored yet, the program will ask if its output is correct.
-* If the correct answer is calculated, the run time will be saved to track efficiency.
+
+```
+Which problem would you like to solve? link 2
+```
+
+* If the correct answer has not been stored yet, the program will ask if its output is correct. Anything other than 'yes' is a no.
+
+```
+No answer recorded. Is this correct? yes
+```
+
+* Typing 'yes' will save the result and time to better track efficiency.
 
 IDE
 -
-Project was created using Eclipse Version: 2019-03 RC1 (4.11 RC1)
+Eclipse Version: 2020-06 (4.16.0)
