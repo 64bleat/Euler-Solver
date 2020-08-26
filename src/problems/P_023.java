@@ -13,7 +13,7 @@ public class P_023 extends P_0
     long answer = 0;
     
     for(long i = 1; i < 28123; i++)
-      if(Prime.abundanceOf(i) > 0)
+      if(Prime.abundanceOf(i) > i)
         abundantNumbers.add(i);
     
     for(int n = 1; n < 28123; n++)     

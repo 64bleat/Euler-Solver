@@ -1,34 +1,43 @@
 package problems;
 
+/**
+ * Largest Palindrome Product
+ * 
+ * Find the largest palindromic base-10 integer made from the product of two
+ * 3-digit numbers.
+ *
+ */
 public class P_004 extends P_0
 {
-  public long run()
-  {
-    long a, b, answer;
-    a = b = answer = 999;
-    
-    while(b >= 100)
-    {
-      String s ="" + (a * b);
-      
-      if(s.length() % 2 == 0)
-      {
-        String x = s.substring(0, s.length() / 2);
-        String y = s.substring(s.length() / 2);
-        boolean isPalindrome = true;
-       
-        for(int i = 0; i < x.length() && isPalindrome; i++)
-          if(x.charAt(i) != y.charAt(y.length() - 1 - i))
-            isPalindrome = false;
-       
-        if(isPalindrome && a * b > answer)
-          answer = a * b;
-      }
-      
-      if(--a < 100)
-        a = --b;
-    }
-    
-    return answer;
-  }
+	public long run()
+	{
+		long a, b, answer;
+		
+		a = b = answer = 999;
+
+		while (b >= 100)
+		{
+			if(a * b > answer)
+			{
+				String s = "" + (a * b);
+				int l = 0;
+				int h = s.length() - 1;
+				boolean isPalindrome;
+
+				do
+					isPalindrome = s.charAt(l) == s.charAt(h);
+				while
+					(isPalindrome && ++l < --h);
+
+				if (isPalindrome)
+					answer = a * b;
+
+			}
+
+			if (--a < 100)
+				a = --b;
+		}
+
+		return answer;
+	}
 }
