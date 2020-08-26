@@ -9,6 +9,7 @@ import java.util.*;
  * 
  * @see <a href = https://en.wikipedia.org/wiki/Prime_number> Wikipedia: Prime
  *      number </a>
+ * @see supplemental.Prime#get(int)
  */
 public class Prime
 {
@@ -216,6 +217,7 @@ public class Prime
 	 * Iterate through prime numbers
 	 * 
 	 * @return the prime number at the internal index cursor.
+	 * @see supplemental.Prime#reset()
 	 */
 	public static long next()
 	{
@@ -292,6 +294,7 @@ public class Prime
 
 	/**
 	 * Resets the prime index cursor to 0.
+	 * @see supplemental.Prime#next()
 	 */
 	public static void reset()
 	{
