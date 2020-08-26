@@ -8,7 +8,7 @@ import java.net.URI;
 import problems.*;
 import supplemental.*;
 
-public class Solver
+public class Solver // TEST
 {
   private static Map<String, Function<String[], Boolean>> commands = new HashMap<String, Function<String[], Boolean>>();
   private static Scanner in = new Scanner(System.in);
@@ -56,11 +56,11 @@ public class Solver
   
   private static Function<String[], Boolean> Exit = (arg) -> 
   {
-    System.out.println("Exiting.");    
+    System.out.println("Exiting.");
     return false;
   };
   
-  private static Function<String[], Boolean> Solve= (arg) ->
+  private static Function<String[], Boolean> Solve = (arg) ->
   {
     for(int p = 1; p < arg.length; p++)
     {
