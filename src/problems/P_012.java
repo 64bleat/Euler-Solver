@@ -16,7 +16,7 @@ public class P_012 extends P_0
 		long triangle = 0;
 		int i = 0;
 		
-		while(Prime.factorize(triangle += i++).size() < 500);
+		while(Prime.factorize(triangle += i++).length < 500);
 
 		return triangle;
 	}

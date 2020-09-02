@@ -14,7 +14,7 @@ import java.util.*;
 public class Prime
 {
 	private static int cursor = 0;
-	private static Map<Long, List<Long>> factors = new HashMap<Long, List<Long>>();
+	private static Map<Long, Long[]> savedFactors = new HashMap<Long, Long[]>();
 	private static Map<Integer, Long> perfects = new HashMap<Integer, Long>()
 	{
 		{
@@ -32,9 +32,7 @@ public class Prime
 	};
 
 	/**
-	 * Abundance
-	 * 
-	 * The sum of all proper divisors of an integer.
+	 * Abundance. The sum of all proper divisors of an integer.
 	 * 
 	 * @param number any positive integer
 	 * @return the abundance of number
@@ -43,9 +41,9 @@ public class Prime
 	 */
 	public static long abundanceOf(long number)
 	{
-		long abundance = 0;
+		long abundance = -number;
 
-		for (Long n : properDivisorsOf(number))
+		for (Long n : factorize(number))
 			abundance += n;
 
 		return abundance;
@@ -71,71 +69,39 @@ public class Prime
 
 	/**
 	 * Factorization
-	 * @param number any positive integer
+	 * @param n any positive integer
 	 * @return all possible divisors for an integer
 	 * @see <a href = https://en.wikipedia.org/wiki/Factorization> Wikipedia:
 	 *      Factorization </a>
 	 */
-	public static List<Long> factorize(long number)
+	public static Long[] factorize(long n)
 	{
-		List<Long> fGet = factors.get(number);
-		double numberSqrt = Math.sqrt(number);
+		Long[] fArray = savedFactors.get(n);
 
-		if (number < 1)
-			return new LinkedList<Long>();
-		else if (fGet != null)
-			return fGet;
-		else
-			fGet = new LinkedList<Long>();
+		if (fArray != null)
+			return fArray;
+		else if (n < 1)
+			return new Long[0];
 
-		fGet.add(1L);
-
-		if (number > 1)
-			fGet.add(number);
-
-		for (long divisor = 2; divisor <= numberSqrt; divisor++)
-		{
-			if (number % divisor == 0)
+		for (long divisor = 2, sqrt = (long) Math.sqrt(n); divisor <= sqrt; divisor++)
+			if (n % divisor == 0)
 			{
-				long dividend = number / divisor;
-				LinkedList<Long> fDup = new LinkedList<Long>();
-				LinkedList<Long> fDub = new LinkedList<Long>();
-
-				fGet = factorize(dividend);
-
-				for (Long l : fGet)
+				SortedSet<Long> factors = new TreeSet<Long>();
+				
+				for (Long f : factorize(n / divisor))
 				{
-					fDup.add(l);
-					fDub.add(l * divisor);
+					factors.add(f);
+					factors.add(f * divisor);
 				}
 
-				sortnumberloop:
-				while (!fDub.isEmpty())
-				{
-					long newF = fDub.remove();
-					int i = 0;
-
-					for (Long l : fDup)
-						if (l < newF)
-							i++;
-						else if (l == newF)
-							continue sortnumberloop;
-						else
-							break;
-
-					if (i < fDup.size())
-						fDup.add(i, newF);
-					else
-						fDup.add(newF);
-				}
-
-				factors.put(number, fDup);
-				return fDup;
+				fArray = factors.toArray(new Long[factors.size()]);
+				savedFactors.put(n, fArray);
+				return fArray;
 			}
-		}
 
-		factors.put(number, fGet);
-		return fGet;
+		fArray = new Long[] {1L, n};
+		savedFactors.put(n, fArray);
+		return fArray;
 	}
 
 	/**
@@ -150,18 +116,20 @@ public class Prime
 	 */
 	public static long gcd(long a, long b)
 	{
-		List<Long> fA, fB;
-		long gcf = 0;
+		Long[] fA = factorize(a);
+		Long[] fB = factorize(b);
+		int i = fA.length - 1;
+		int j = fB.length - 1;
 
-		fA = factorize(a);
-		fB = factorize(b);
+		while (i >= 0 && j >= 0)
+			if (fA[i] == fB[j])
+				return fA[i];
+			else if (fA[i] > fB[j])
+				i--;
+			else
+				j--;
 
-		for (Long x : fA)
-			for (Long y : fB)
-				if (x == y && x > gcf)
-					gcf = x;
-
-		return gcf;
+		return 1L;
 	}
 
 	/**
@@ -281,7 +249,7 @@ public class Prime
 	 * @see <a href = "https://mathworld.wolfram.com/ProperDivisor.html">
 	 *      Wolfram: Proper Divisor </a>
 	 */
-	public static LinkedList<Long> properDivisorsOf(long n)
+	public static Long[] properDivisorsOf(long n)
 	{
 		LinkedList<Long> pFactors = new LinkedList<Long>();
 
@@ -289,7 +257,7 @@ public class Prime
 			if (l < n)
 				pFactors.add(l);
 
-		return pFactors;
+		return pFactors.toArray(new Long[pFactors.size()]);
 	}
 
 	/**

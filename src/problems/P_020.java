@@ -1,6 +1,6 @@
 package problems;
 
-import supplemental.MegaInt;
+import supplemental.LargeInt;
 
 /**
  * <b>Factorial digit sum</b><br>
@@ -12,7 +12,7 @@ public class P_020 extends P_0
 {
 	public long run()
 	{
-		MegaInt factorial = new MegaInt("1");
+		LargeInt factorial = new LargeInt("1");
 		long answer = 0;
 
 		// Factorial
